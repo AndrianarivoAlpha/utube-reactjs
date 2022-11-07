@@ -23,7 +23,6 @@ const SearchResult = ( { searchedMusic } ) =>
               <Typography><strong>Duration : </strong>{ parseInt( item?.video?.lengthSeconds / 60 ) } min { parseInt( item?.video?.lengthSeconds % 60 ) } sec</Typography>
             </div>
           </Link>
-
         )
         ) }
       </div>
