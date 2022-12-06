@@ -58,7 +58,7 @@ const DownloadDetail = () =>
   useEffect( () =>
   {
     fetchMusicByID()
-  }, [] )
+  } )
 
   //console.log( imageUrl );
   
