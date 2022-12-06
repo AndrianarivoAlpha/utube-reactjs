@@ -9,13 +9,14 @@ import { RotatingTriangles } from 'react-loader-spinner'
 const DownloadDetail = () =>
 {
   const { id } = useParams();
+  
   const [ isFetched, setIsFetched ] = useState( false );
   const [ imageUrl, setImageUrl ] = useState( '' );
   const [ title, setTitle ] = useState( '' );
   const [ duration, setDuration ] = useState( '' );
 
   const [ audioLink, setAudioLink ] = useState( '' );
-  const [ videoLink, setVideoLink ] = useState( '' );
+  const [videoLink, setVideoLink] = useState('');
 
   const fetchMusicByID = async () =>
   {
@@ -41,14 +42,14 @@ const DownloadDetail = () =>
       setImageUrl( mp4Data.thumbnail[ mp4Data.thumbnail.length - 1 ].url );
       setDuration( lengthSeconds );
 
-      let mp4 = mp4Data && mp4Data.adaptiveFormats.filter( ( video ) => video.qualityLabel === "720p" || video.qualityLabel === "360p" || video.qualityLabel === "240p" );
+      let mp4 = mp4Data && mp4Data.formats.filter((video) => video.height >= 240 );
       let mp3 = mp3Data.link;
 
-      //console.log(mp4[0])
+      //console.log(mp4)
 
       setTitle( title );
       setAudioLink( mp3 );
-      setVideoLink( mp4[ 0 ].url );
+      setVideoLink( mp4[mp4.length - 1].url );
 
       setIsFetched( true );
     }

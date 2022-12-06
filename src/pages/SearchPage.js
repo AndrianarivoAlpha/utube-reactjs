@@ -3,38 +3,52 @@ import { fetchData, youtubeOptions } from '../utils/fetchDataFunction';
 import SearchResult from '../components/SearchResult';
 
 import { RotatingTriangles } from 'react-loader-spinner'
+import { useNavigate } from 'react-router-dom';
 
 
 
 const SearchPage = () =>
 {
+  const navigate = useNavigate()
+
   const [ musicTitle, setMusicTitle ] = useState( "" )
   const [ searchedMusic, setSearchedMusic ] = useState( [] )
   const [ isSearchFinish, setIsSearchFinish ] = useState( false )
 
-  const [ isLoading, setIsLoading ] = useState( false )
+  const [isLoading, setIsLoading] = useState(false)
+  const disableBtn = musicTitle === "" ? true : false
 
   //console.log( searchedMusic );
 
   const handleSearchMusic = async ( e ) =>
   {
-    setIsLoading( true )
-    encodeURIComponent( musicTitle )
+    if (musicTitle.includes('/watch?v=')) {
+      const splitedMusicID = musicTitle.split('=');
+      const musicID = splitedMusicID[splitedMusicID.length - 1]
 
-    const url = `https://youtube138.p.rapidapi.com/search/?q=${ encodeURIComponent( musicTitle ) }&hl=fr`;
-    const data = await fetchData( url, youtubeOptions );
+      navigate(`/${musicID}`)
+    } else if (musicTitle.includes('youtu.be/')) {
+      const splitedMusicID = musicTitle.split('/');
+      const musicID = splitedMusicID[splitedMusicID.length - 1]
 
-    //console.log( data.contents );
+      navigate(`/${musicID}`)
+    } else {
+      setIsLoading(true)
+      encodeURIComponent(musicTitle)
 
-    if ( data )
-    {
-      setSearchedMusic( [ ...data.contents ] )
-      setIsSearchFinish( true )
+      const url = `https://youtube138.p.rapidapi.com/search/?q=${encodeURIComponent(musicTitle)}&hl=fr`;
+      const data = await fetchData(url, youtubeOptions);
 
-      setMusicTitle( '' )
-      setIsLoading( false )
+      //console.log( data.contents );
+
+      if (data) {
+        setSearchedMusic([...data.contents])
+        setIsSearchFinish(true)
+
+        setMusicTitle('')
+        setIsLoading(false)
+      }
     }
-
   }
 
   return (
@@ -49,13 +63,15 @@ const SearchPage = () =>
             type="search"
             name="search"
             id="search"
-            placeholder="Type your search here..."
+            placeholder="Search or paste Youtube Url here..."
             autoFocus
-            onChange={ ( e ) => setMusicTitle( e.target.value ) }
+            onChange={(e) => {
+              setMusicTitle(e.target.value)
+            }}
             value={ musicTitle }
           />
         </form>
-        <button onClick={ () => handleSearchMusic() } >SEARCH</button>
+        <button disabled={disableBtn} onClick={ () => handleSearchMusic() } >SEARCH</button>
       </div>
 
       {

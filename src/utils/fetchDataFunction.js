@@ -1,24 +1,24 @@
 export const YTOptions = {
   method: 'GET',
   headers: {
-    'X-RapidAPI-Key': '828ae52aa6mshb6e0615fb7df0efp18526ajsncfdc9e0b7714',
-    'X-RapidAPI-Host': 'yt-api.p.rapidapi.com'
+    'X-RapidAPI-Key': process.env.REACT_APP_X_RAPID_API_KEY,
+    'X-RapidAPI-Host': process.env.REACT_APP_X_RAPID_YT_HOST
   }
 };
 
 export const youtubeMp3Options = {
   method: 'GET',
   headers: {
-    'X-RapidAPI-Key': '828ae52aa6mshb6e0615fb7df0efp18526ajsncfdc9e0b7714',
-    'X-RapidAPI-Host': 'youtube-mp3-download1.p.rapidapi.com'
+    'X-RapidAPI-Key': process.env.REACT_APP_X_RAPID_API_KEY,
+    'X-RapidAPI-Host': process.env.REACT_APP_X_RAPID_YTMP3_HOST
   }
 }
 
 export const youtubeOptions = {
   method: 'GET',
   headers: {
-    'X-RapidAPI-Key': '828ae52aa6mshb6e0615fb7df0efp18526ajsncfdc9e0b7714',
-    'X-RapidAPI-Host': 'youtube138.p.rapidapi.com'
+    'X-RapidAPI-Key': process.env.REACT_APP_X_RAPID_API_KEY,
+    'X-RapidAPI-Host': process.env.REACT_APP_X_RAPID_YT138_HOST
   }
 };
 
