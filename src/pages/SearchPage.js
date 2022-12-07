@@ -16,7 +16,7 @@ const SearchPage = () =>
   const [ isSearchFinish, setIsSearchFinish ] = useState( false )
 
   const [isLoading, setIsLoading] = useState(false)
-  const disableBtn = musicTitle === "" ? true : false
+  const showBtn = musicTitle !== "" ? true : false
 
   //console.log( searchedMusic );
 
@@ -63,6 +63,7 @@ const SearchPage = () =>
             type="search"
             name="search"
             id="search"
+            autocomplete="off"
             placeholder="Search or paste Youtube Url here..."
             autoFocus
             onChange={(e) => {
@@ -71,7 +72,9 @@ const SearchPage = () =>
             value={ musicTitle }
           />
         </form>
-        <button disabled={disableBtn} onClick={ () => handleSearchMusic() } >SEARCH</button>
+        {
+          showBtn && <button onClick={() => handleSearchMusic()} >SEARCH</button>
+        }
       </div>
 
       {

@@ -66,11 +66,7 @@ button:hover {
   background: #a32d2d;
   box-shadow: 5px 10px 15px -3px rgba(0,0,0,0.5);
 }
-button:disabled,
-button[disabled]{
-  background-color: #cccccc;
-  color: #666666;
-}
+
 .search-result-container, .download-detail-container, .loading-container {
   display: flex;
   width: 90%;

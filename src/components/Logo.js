@@ -14,7 +14,7 @@ const Logo = () => {
         marginBottom: "30px"
       }}>
       <Link to='/' >
-        <img src={LogoImage} alt="" height="40" />
+        <img src={LogoImage} alt="" height="30" />
       </Link>
     </Grid>
 
