@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { fetchData, youtubeOptions } from '../utils/fetchDataFunction';
 import SearchResult from '../components/SearchResult';
 
-import { RotatingTriangles } from 'react-loader-spinner'
+import { RotatingTriangles } from 'react-loader-spinner';
 import { useNavigate } from 'react-router-dom';
+import Header from '../components/Header';
 
 
 
@@ -13,10 +14,11 @@ const SearchPage = () =>
 
   const [ musicTitle, setMusicTitle ] = useState( "" )
   const [ searchedMusic, setSearchedMusic ] = useState( [] )
-  const [ isSearchFinish, setIsSearchFinish ] = useState( false )
+  const [isSearchFinish, setIsSearchFinish] = useState(false)
 
   const [isLoading, setIsLoading] = useState(false)
   const showBtn = musicTitle !== "" ? true : false
+  const btnText = musicTitle.includes('/watch?v=') || musicTitle.includes('youtu.be/') ? "CONVERT" : "SEARCH"
 
   //console.log( searchedMusic );
 
@@ -53,6 +55,7 @@ const SearchPage = () =>
 
   return (
     <>
+      {!isSearchFinish && <Header />}
       <div className='search-bar-container'>
         <form onSubmit={ ( e ) =>
         {
@@ -63,8 +66,8 @@ const SearchPage = () =>
             type="search"
             name="search"
             id="search"
-            autocomplete="off"
-            placeholder="Search or paste Youtube Url here..."
+            autoComplete="off"
+            placeholder="Search or paste Youtube url here..."
             autoFocus
             onChange={(e) => {
               setMusicTitle(e.target.value)
@@ -73,7 +76,7 @@ const SearchPage = () =>
           />
         </form>
         {
-          showBtn && <button onClick={() => handleSearchMusic()} >SEARCH</button>
+          showBtn && <button onClick={() => handleSearchMusic()} >{btnText}</button>
         }
       </div>
 

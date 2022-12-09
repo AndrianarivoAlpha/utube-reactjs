@@ -115,6 +115,7 @@ button:hover {
 }
 .donwload-image-thumbnail {
   width: 500px;
+  border-radius: 5px;
 }
 .btn-download {
   width: 100%;

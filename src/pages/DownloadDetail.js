@@ -5,6 +5,7 @@ import { fetchData, youtubeOptions, youtubeMp3Options, YTOptions } from '../util
 
 import DownloadButton from '../components/DownloadButton';
 import { RotatingTriangles } from 'react-loader-spinner'
+import Header from '../components/Header';
 
 const DownloadDetail = () =>
 {
@@ -63,39 +64,43 @@ const DownloadDetail = () =>
   //console.log( imageUrl );
   
   return (
-    <div className='download-detail-container'>
-      {
-        isFetched ? (
-          <div>
-            <div className='donwload-detail'>
-              <img src={ imageUrl } alt="" className='donwload-image-thumbnail' />
-              <Typography>
-                <strong>Title :</strong> { title }
-              </Typography>
-              <Typography>
-                <strong>Duration :</strong> { parseInt( duration / 60 ) } <small>min</small>  : { parseInt( duration % 60 ) } <small>sec</small>
-              </Typography>
-            </div>
+    <>
+      {!isFetched && <Header />}
+      <div className='download-detail-container'>
+        {
+          isFetched ? (
             <div>
-              <DownloadButton title={ title } audioLink={ audioLink } videoLink={ videoLink } />
+              <div className='donwload-detail'>
+                <img src={imageUrl} alt="" className='donwload-image-thumbnail' />
+                <Typography>
+                  <strong>Title :</strong> {title}
+                </Typography>
+                <Typography>
+                  <strong>Duration :</strong> {parseInt(duration / 60)} <small>min</small>  : {parseInt(duration % 60)} <small>sec</small>
+                </Typography>
+              </div>
+              <div>
+                <DownloadButton title={title} audioLink={audioLink} videoLink={videoLink} />
+              </div>
             </div>
-          </div>
-          
-        ) :
-          (
-            <div>
-              <RotatingTriangles
-                visible={ true }
-                height="80"
-                width="80"
-                ariaLabel="rotating-triangels-loading"
-                wrapperClass="rotating-triangels-wrapper"
-              />
-              <h4>LOADING...</h4>
-            </div>
-          )
-      }
-    </div>
+
+          ) :
+            (
+              <div>
+                <RotatingTriangles
+                  visible={true}
+                  height="80"
+                  width="80"
+                  ariaLabel="rotating-triangels-loading"
+                  wrapperClass="rotating-triangels-wrapper"
+                />
+                <h4>LOADING...</h4>
+              </div>
+            )
+        }
+      </div>
+    </>
+    
   )
 }
 
