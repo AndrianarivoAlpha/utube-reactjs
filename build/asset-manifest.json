@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/static/css/main.939a19cf.css",
+    "main.css": "/static/css/main.3b9e2dc6.css",
     "main.js": "/static/js/main.d15b6de3.js",
     "static/js/787.055e0987.chunk.js": "/static/js/787.055e0987.chunk.js",
     "static/media/utube-logo-text.png": "/static/media/utube-logo-text.462bf160b5dfac428efc.png",
@@ -8,12 +8,12 @@
     "static/media/Telegram.png": "/static/media/Telegram.8c7739d107802c40cac3.png",
     "static/media/Twitter.png": "/static/media/Twitter.98813aaa59cafb681044.png",
     "index.html": "/index.html",
-    "main.939a19cf.css.map": "/static/css/main.939a19cf.css.map",
+    "main.3b9e2dc6.css.map": "/static/css/main.3b9e2dc6.css.map",
     "main.d15b6de3.js.map": "/static/js/main.d15b6de3.js.map",
     "787.055e0987.chunk.js.map": "/static/js/787.055e0987.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.939a19cf.css",
+    "static/css/main.3b9e2dc6.css",
     "static/js/main.d15b6de3.js"
   ]
 }
