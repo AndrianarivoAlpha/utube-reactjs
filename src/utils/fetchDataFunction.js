@@ -17,7 +17,7 @@ export const youtubeMp3Options = {
 export const youtubeOptions = {
   method: 'GET',
   headers: {
-    'X-RapidAPI-Key': process.env.REACT_APP_X_RAPID_API_KEY,
+    'X-RapidAPI-Key': process.env.REACT_APP_X_RAPID_API_KEY_3,
     'X-RapidAPI-Host': process.env.REACT_APP_X_RAPID_YT138_HOST
   }
 };

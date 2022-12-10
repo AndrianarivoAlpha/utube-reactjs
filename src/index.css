@@ -147,3 +147,24 @@ a {
 .social-media-icon {
   height: 50px;
 }
+
+.error-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+}
+.error-container h1 {
+  margin: 0;
+  font-size: 5rem;
+}
+.error-container p {
+  margin-top: -30px;
+  padding: 2px 5px;
+  border-radius: 5px;
+  background: white;
+}
+.error-container button {
+  margin-bottom: 100px;
+}

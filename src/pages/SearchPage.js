@@ -8,13 +8,14 @@ import Header from '../components/Header';
 
 
 
-const SearchPage = () =>
-{
+const SearchPage = () => {
   const navigate = useNavigate()
 
-  const [ musicTitle, setMusicTitle ] = useState( "" )
-  const [ searchedMusic, setSearchedMusic ] = useState( [] )
+  const [musicTitle, setMusicTitle] = useState("")
+  const [searchedMusic, setSearchedMusic] = useState([])
   const [isSearchFinish, setIsSearchFinish] = useState(false)
+
+  const [error, setError] = useState(false)
 
   const [isLoading, setIsLoading] = useState(false)
   const showBtn = musicTitle !== "" ? true : false
@@ -22,8 +23,7 @@ const SearchPage = () =>
 
   //console.log( searchedMusic );
 
-  const handleSearchMusic = async ( e ) =>
-  {
+  const handleSearchMusic = async (e) => {
     if (musicTitle.includes('/watch?v=')) {
       const splitedMusicID = musicTitle.split('=');
       const musicID = splitedMusicID[splitedMusicID.length - 1]
@@ -43,10 +43,14 @@ const SearchPage = () =>
 
       //console.log( data.contents );
 
-      if (data) {
+      if (data && data?.contents) {
         setSearchedMusic([...data.contents])
         setIsSearchFinish(true)
 
+        setMusicTitle('')
+        setIsLoading(false)
+      } else {
+        setError(true)
         setMusicTitle('')
         setIsLoading(false)
       }
@@ -57,11 +61,10 @@ const SearchPage = () =>
     <>
       {!isSearchFinish && <Header />}
       <div className='search-bar-container'>
-        <form onSubmit={ ( e ) =>
-        {
+        <form onSubmit={(e) => {
           handleSearchMusic();
           e.preventDefault();
-        } }>
+        }}>
           <input
             type="search"
             name="search"
@@ -72,7 +75,7 @@ const SearchPage = () =>
             onChange={(e) => {
               setMusicTitle(e.target.value)
             }}
-            value={ musicTitle }
+            value={musicTitle}
           />
         </form>
         {
@@ -84,17 +87,24 @@ const SearchPage = () =>
         isLoading && (
           <div className='loading-container'>
             <RotatingTriangles
-              visible={ true }
+              visible={true}
               height="80"
               width="80"
               ariaLabel="rotating-triangels-loading"
-              wrapperStyle={ {} }
+              wrapperStyle={{}}
               wrapperClass="rotating-triangels-wrapper"
             />
             <h4>LOADING...</h4>
-          </div> )
+          </div>)
       }
-      { isSearchFinish && <SearchResult searchedMusic={ searchedMusic } /> }
+      {isSearchFinish && !error && <SearchResult searchedMusic={searchedMusic} />}
+      {error &&
+        <div className='error-container'>
+          <h1>OOPS!</h1>
+          <p>OUR SERVER IS ON A BREAK</p>
+          <button onClick={() => window.location.reload(false)}>REFRESH</button>
+        </div>
+      }
     </>
   )
 }
