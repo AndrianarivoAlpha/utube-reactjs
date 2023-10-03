@@ -1,16 +1,12 @@
 import React, { useState } from 'react';
 import { AiOutlineDownload } from 'react-icons/ai';
-import { useNavigate } from 'react-router-dom';
 import { FireWorks } from '../utils/FireWorks';
 
 const DownloadButton = ({ title, audioLink, videoLink }) => {
   const [runFirework, setRunFirework] = useState(false);
-  const navigate = useNavigate();
 
   const handleDownload = () => {
     setRunFirework(true);
-    setTimeout(() => navigate("/"), 2000)
-
   }
   return (
     <div className='download-button-container'>

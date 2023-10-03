@@ -7,8 +7,8 @@ import Logo from './components/Logo';
 import Footer from './components/Footer';
 import SearchPage from './pages/SearchPage';
 
-const App = () =>
-{
+const App = () => {
+
   return (
     <>
       <Logo />

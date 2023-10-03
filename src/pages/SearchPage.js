@@ -41,7 +41,7 @@ const SearchPage = () => {
       const url = `https://youtube138.p.rapidapi.com/search/?q=${encodeURIComponent(musicTitle)}&hl=fr`;
       const data = await fetchData(url, youtubeOptions);
 
-      //console.log( data.contents );
+      console.log( data );
 
       if (data && data?.contents) {
         setSearchedMusic([...data.contents])
